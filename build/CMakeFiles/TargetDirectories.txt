@@ -1,3 +1,0 @@
-D:/CppProjects/battlecity/build/CMakeFiles/BattleCity.dir
-D:/CppProjects/battlecity/build/CMakeFiles/edit_cache.dir
-D:/CppProjects/battlecity/build/CMakeFiles/rebuild_cache.dir
