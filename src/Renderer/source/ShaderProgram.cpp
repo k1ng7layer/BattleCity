@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/ShaderProgram.h"
+#include "../Include/ShaderProgram.h"
 
 namespace Renderer {
     Renderer::ShaderProgram::ShaderProgram(const std::string &vertex_shader, const std::string &fragment_shader) {

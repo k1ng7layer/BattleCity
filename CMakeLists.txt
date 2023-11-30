@@ -3,8 +3,10 @@ set(PROJECT_NAME BattleCity)
 project(${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME} src/main.cpp
-        Renderer/source/ShaderProgram.cpp
-        Renderer/include/ShaderProgram.h)
+        src/Renderer/source/ShaderProgram.cpp
+        src/Renderer/include/ShaderProgram.h
+        src/Resources/source/ResourceManager.cpp
+        src/Resources/include/ResourceManager.h)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
