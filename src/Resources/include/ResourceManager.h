@@ -15,6 +15,7 @@ public:
 
     std::shared_ptr<Renderer::ShaderProgram> LoadShaderProgram(const std::string& shaderName, const std::string& vertexPath, const std::string& fragmentPath);
     std::shared_ptr<Renderer::ShaderProgram> GetShader(const std::string& shaderName);
+    void LoadTexture(const std::string& textureName, const std::string& texturePath);
 
 private:
     std::string GetFileString(const std::string& relativePath) const;
