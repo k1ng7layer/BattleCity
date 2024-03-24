@@ -1,7 +1,6 @@
 
 #include <glad/glad.h>
 #include <string>
-
 namespace Renderer {
     class Texture2D
     {

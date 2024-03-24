@@ -16,6 +16,12 @@ GLfloat vertexColors[]{
     0.0f, 0.0f, 1.0f
 };
 
+GLfloat textCoords[]{
+        0.5f, 1.0f,
+        1.0f, 0.0f,
+        0.0f, 0.0f
+};
+
 int g_windowSizeX = 640;
 int g_windowSizeY = 480;
 
@@ -90,7 +96,7 @@ int main(int argc, char** argv)
             return -1;
         }
 
-        resourceManager.LoadTexture("DefaultTexture2", "res/textures/map_16x16.png");
+        auto texture = resourceManager.LoadTexture("DefaultTexture2", "res/textures/map_16x16.png");
 
         GLuint point_vbo = 0;
         glGenBuffers(1, &point_vbo);
@@ -101,6 +107,11 @@ int main(int argc, char** argv)
         glGenBuffers(1, &color_vbo);
         glBindBuffer(GL_ARRAY_BUFFER, color_vbo);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertexColors), vertexColors, GL_STATIC_DRAW);
+
+        GLuint textCoord_vbo = 0;
+        glGenBuffers(1, &textCoord_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, textCoord_vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(textCoords), textCoords, GL_STATIC_DRAW);
 
         GLuint vao = 0;
         glGenVertexArrays(1, &vao);
@@ -114,7 +125,12 @@ int main(int argc, char** argv)
         glBindBuffer(GL_ARRAY_BUFFER, color_vbo);
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
+        glEnableVertexAttribArray(2);
+        glBindBuffer(GL_ARRAY_BUFFER, textCoord_vbo);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
 
+        pDefaultShaderProgram -> Use();
+        pDefaultShaderProgram->SetInt("tex", 0);
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(pWindow))
         {
@@ -124,6 +140,7 @@ int main(int argc, char** argv)
             pDefaultShaderProgram -> Use();
 
             glBindVertexArray(vao);
+            texture -> Bind();
             glDrawArrays(GL_TRIANGLES, 0, 3);
 
             /* Swap front and back buffers */
