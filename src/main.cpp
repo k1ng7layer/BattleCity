@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../src/Renderer/Include/ShaderProgram.h"
 #include "../src/Resources/include/ResourceManager.h"
+#include "ext/vector_int2.hpp"
 
 GLfloat vertexes[] {
     0.0, 0.5f, 0.0f,
@@ -21,6 +22,8 @@ GLfloat textCoords[]{
         1.0f, 0.0f,
         0.0f, 0.0f
 };
+
+glm::ivec2 g_windowSize(640, 480);
 
 int g_windowSizeX = 640;
 int g_windowSizeY = 480;
@@ -60,7 +63,7 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
-    GLFWwindow* pWindow = glfwCreateWindow(g_windowSizeX, g_windowSizeY, "Hello World", nullptr, nullptr);
+    GLFWwindow* pWindow = glfwCreateWindow(g_windowSize.x, g_windowSize.y, "Hello World", nullptr, nullptr);
     if (!pWindow)
     {
         std::cout << "glfwCreateWindow failed" << std::endl;
